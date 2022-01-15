@@ -22,6 +22,7 @@ pipeline {
                 sshagent(credentials : ['DeployServer']) {
                     sh '''
                     echo 'connect to remote host and install the app dependencies'
+                    ssh -o StrictHostKeyChecking=no ubuntu@13.232.207.109 sudo apt-get update -y
                     ssh -o StrictHostKeyChecking=no ubuntu@13.232.207.109 sudo apt-get install apache2 -y
                     ssh -o StrictHostKeyChecking=no ubuntu@13.232.207.109 sudo service apache2 start
                     '''
