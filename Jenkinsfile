@@ -19,14 +19,23 @@ pipeline {
         }
         stage('install app2 dependencies') {
             steps {
-                echo 'connect to remote host and install the app dependencies'
-                sh 'ssh -o StrictHostKeyChecking=no -i ~/demo.pem ubuntu@13.232.207.109 sudo sh install_dependencies'
+                sshagent(credentials : ['DeployServer']) {
+                    sh '''
+                    echo 'connect to remote host and install the app dependencies'
+                    ssh -o StrictHostKeyChecking=no ubuntu@13.232.207.109 sudo apt-get install apache2
+                    ssh -o StrictHostKeyChecking=no ubuntu@13.232.207.109 sudo service apache2 start
+                    '''
+                  }
             }
         }
         stage('push repo to remote host') {
             steps {
-                echo 'connect to remote host and pull down the latest version'
-                sh 'ssh -o StrictHostKeyChecking=no -i ~/demo.pem ubuntu@13.232.207.109 sudo git -C /var/www/html pull'
+                sshagent(credentials : ['DeployServer']) {
+                    sh '''
+                    echo 'connect to remote host and pull down the latest version'
+                    ssh -o StrictHostKeyChecking=no ubuntu@13.232.207.109 sudo git -C /var/www/html pull
+                    '''
+                }           
             }
         }
         stage('Check website is up') {
