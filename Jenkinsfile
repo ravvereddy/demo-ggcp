@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo 'clone the repo'
                 sh 'rm -fr html'
-                sh 'git clone https://github.com/dmccuk/html.git'
+                sh 'https://github.com/ravvereddy/demo-ggcp.git'
                 sh 'pwd'
             }
         }
@@ -35,7 +35,7 @@ pipeline {
                 sshagent(credentials : ['DeployServer']) {
                     sh '''
                     echo 'connect to remote host and pull down the latest version'
-                    ssh -o StrictHostKeyChecking=no ubuntu@13.232.207.109 sudo git -C /var/www/html pull
+                    scp -R -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/sample/html/ ubuntu@13.232.207.109:/var/www/html/
                     '''
                 }           
             }
