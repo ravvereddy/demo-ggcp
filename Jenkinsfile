@@ -12,10 +12,7 @@ pipeline {
             steps {
                 sshagent(['DeployServer'])
                     sh '''
-                    echo 'connect to remote host and install the app dependencies'
                     ssh -o StrictHostKeyChecking=no ubuntu@13.232.207.109 hostname 
-                    ssh -o StrictHostKeyChecking=no ubuntu@13.232.207.109 ls
-                    ssh -o StrictHostKeyChecking=no ubuntu@13.232.207.109 pwd
                     '''
             }
         }
