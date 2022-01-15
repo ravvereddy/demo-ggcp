@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Check if apache2 exist"
+sudo apt-get install apache2 -y
+sudo service apache2 start
