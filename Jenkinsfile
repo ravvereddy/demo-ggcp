@@ -11,7 +11,7 @@ pipeline {
         stage('install app dependencies') {
             steps {
                 echo 'connect to remote host and install the app dependencies'
-                sh 'ssh -o StrictHostKeyChecking=no -i ~/demo.pem ubuntu@13.232.207.109 sudo sh echo $hostname'
+                sh 'ssh -o StrictHostKeyChecking=no -i ~/demo.pem ubuntu@13.232.207.109 sudo sh echo "$hostname" '
             }
         }
         stage('install app2 dependencies') {
