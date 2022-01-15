@@ -8,6 +8,12 @@ pipeline {
                 sh 'git clone https://github.com/dmccuk/html.git'
             }
         }
+        stage('install app dependencies') {
+            steps {
+                echo 'connect to remote host and install the app dependencies'
+                sh 'ssh -i ~/demo.pem ubuntu@52.66.214.174 sudo sh echo $hostname'
+            }
+        }
         stage('push repo to remote host') {
             steps {
                 echo 'connect to remote host and pull down the latest version'
