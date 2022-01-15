@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo 'clone the repo'
                 sh 'rm -fr html'
-                sh 'https://github.com/ravvereddy/demo-ggcp.git'
+                sh 'git clone https://github.com/ravvereddy/demo-ggcp.git'
                 sh 'pwd'
             }
         }
