@@ -11,19 +11,19 @@ pipeline {
         stage('install app dependencies') {
             steps {
                 echo 'connect to remote host and install the app dependencies'
-                sh 'ssh -i ~/demo.pem ubuntu@52.66.214.174 sudo sh echo $hostname'
+                sh 'ssh -i ~/demo.pem ubuntu@13.232.207.109 sudo sh echo $hostname'
             }
         }
         stage('push repo to remote host') {
             steps {
                 echo 'connect to remote host and pull down the latest version'
-                sh 'ssh -i ~/demo.pem ubuntu@52.66.214.174 sudo git -C /var/www/html pull'
+                sh 'ssh -i ~/demo.pem ubuntu@13.232.207.109 sudo git -C /var/www/html pull'
             }
         }
         stage('Check website is up') {
             steps {
                 echo 'Check website is up'
-                sh 'curl -Is 52.66.214.174 | head -n 1'
+                sh 'curl -Is 13.232.207.109 | head -n 1'
             }
         }
     }
