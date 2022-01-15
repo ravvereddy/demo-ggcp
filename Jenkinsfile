@@ -10,10 +10,11 @@ pipeline {
         }
         stage('install app dependencies') {
             steps {
-                sshagent(['DeployServer'])
+                sshagent(['DeployServer']) {
                     sh '''
                     ssh -o StrictHostKeyChecking=no ubuntu@13.232.207.109 hostname 
                     '''
+                }
             }
         }
         stage('install app2 dependencies') {
