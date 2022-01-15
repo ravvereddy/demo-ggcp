@@ -14,6 +14,12 @@ pipeline {
                 sh 'ssh -i ~/demo.pem ubuntu@13.232.207.109 sudo sh echo $hostname'
             }
         }
+        stage('install app2 dependencies') {
+            steps {
+                echo 'connect to remote host and install the app dependencies'
+                sh 'ssh -i ~/demo.pem ubuntu@13.232.207.109 sudo sh install_dependencies'
+            }
+        }
         stage('push repo to remote host') {
             steps {
                 echo 'connect to remote host and pull down the latest version'
